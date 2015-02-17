@@ -1,12 +1,13 @@
 $footer-color: #f5f5f5;
 $footer-border-color: #FF9000;
-$background-color: #13473a;
-$width: 935px;
+$background-color: rgb(245, 245, 245);
 $footer-height: 150px;
 
-html,
 body {
-   height: 100%;
+  padding-top: 40px;
+  html {
+    height: 100%;
+  }
    /* The html and body elements cannot have any padding or margin. */
 }
 /* Wrapper for page content to push down footer */
@@ -41,13 +42,12 @@ body {
 #footer {
    width: 100%;
    height: $footer-height;
-   background-color: white;
+   background-color: $background-color;
 }
 #body-container {
    height: 100%;
-   background-color: white;
+   background-color: $background-color;
    margin: auto;
-   width: $width;
    box-shadow: 0 0 10px black;
 
 }
@@ -67,9 +67,8 @@ body {
 }
 .container {
    height: 100%;
-   background-color: white;
+   background-color: $background-color;
    max-width: none !important;
-   width: $width !important;
 
 }
 
@@ -78,13 +77,6 @@ body {
    text-decoration: underline;
 }
 
-.header-image {
-      width: 100%
-}
 #nav-bar {
    background-color: $background-color
-}
-
-.sortable {
-  cursor: pointer;
 }

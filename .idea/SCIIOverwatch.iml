@@ -32,6 +32,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="akami (v1.2.0, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="backports (v3.4.0, rbenv: 2.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bindata (v2.1.0, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.1.4, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.5.3, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="encryptor (v1.3.0, rbenv: 2.1.0) [gem]" level="application" />
@@ -48,12 +49,14 @@
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.5.2, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-protection (v1.5.1, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.6.2, rbenv: 2.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rbzip2 (v0.2.0, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyntlm (v0.3.4, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="savon (v2.3.2, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="shotgun (v0.9, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.4.4, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra-contrib (v1.4.2, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra-static-assets (v1.0.3, rbenv: 2.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tassadar (v0.3.0, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v1.4.1, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="treetop (v1.4.15, rbenv: 2.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="wasabi (v3.2.3, rbenv: 2.1.0) [gem]" level="application" />
