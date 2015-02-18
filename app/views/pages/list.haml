@@ -22,7 +22,8 @@
 						-if g.player.server == "KR"
 							%img(src="/img/kr.png")
 						#{g.player.server}
-					%td #{g.player.name}
+					%td
+						%a(href="/game/#{g.id}") #{g.player.name}
 					%td
 						-if g.player.race == "Zerg"
 							%img(src="/img/ico_race_z.png")

@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="submit.haml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="submit.haml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/pages/submit.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11392405" vertical-offset="0" max-vertical-offset="420">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            <state vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="420">
+              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -96,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.haml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="list.haml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/pages/list.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.5" vertical-offset="0" max-vertical-offset="645">
-              <caret line="36" column="48" selection-start-line="11" selection-start-column="16" selection-end-line="36" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.3164557" vertical-offset="250" max-vertical-offset="660">
+              <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -146,7 +146,6 @@
         <option value="$PROJECT_DIR$/app/views/pages/submit_details.haml" />
         <option value="$PROJECT_DIR$/app/views/pages/game.haml" />
         <option value="$PROJECT_DIR$/app/models/game.rb" />
-        <option value="$PROJECT_DIR$/app/views/pages/list.haml" />
         <option value="$PROJECT_DIR$/app/controllers/game.rb" />
         <option value="$PROJECT_DIR$/app/controllers/list.rb" />
         <option value="$PROJECT_DIR$/app/models/player.rb" />
@@ -156,6 +155,7 @@
         <option value="$PROJECT_DIR$/app/views/partials/navbar.haml" />
         <option value="$PROJECT_DIR$/app/controllers/submit.rb" />
         <option value="$PROJECT_DIR$/app/views/pages/submit.haml" />
+        <option value="$PROJECT_DIR$/app/views/pages/list.haml" />
       </list>
     </option>
   </component>
@@ -758,14 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/list.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.5" vertical-offset="0" max-vertical-offset="645">
-          <caret line="36" column="48" selection-start-line="11" selection-start-column="16" selection-end-line="36" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/player.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
@@ -832,8 +824,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pages/submit.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11392405" vertical-offset="0" max-vertical-offset="420">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        <state vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="420">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/list.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3164557" vertical-offset="250" max-vertical-offset="660">
+          <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
           <folding />
         </state>
       </provider>
