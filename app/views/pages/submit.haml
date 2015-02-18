@@ -1,7 +1,8 @@
 .col-xs-12
 	%h2 Upload the suspect replay
 .col-xs-4.nudge-down
-
+	-if request.url.include? "player_not_found"
+		.alert.alert-danger Player not found in replay.
 	%form(method="post" enctype="multipart/form-data")
 		.form-group
 			.help-block Name includes clan tag.
