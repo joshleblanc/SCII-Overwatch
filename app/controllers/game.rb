@@ -4,6 +4,7 @@ module Site
 	module Routes
 		class Games < Base
 			get '/game/:id' do
+				p Game.all
 				@game = Game.first(id: params[:id])
 				@player = @game.player
 				p @player.name
