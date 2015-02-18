@@ -19,5 +19,8 @@ class Player
 		self.innocent_count > self.guilty_count
 	end
 
+	def self.search(player)
+		all(:name.like => "%#{player}%")
+	end
 
 end

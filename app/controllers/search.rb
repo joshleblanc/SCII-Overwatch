@@ -4,7 +4,11 @@ module Site
 	module Routes
 		class Search < Base
 			post '/search' do
-				@players = Player.all(:name.like => "%#{params[:player_name]}%")
+				redirect to "/search/#{params[:player_search]}"
+			end
+
+			get '/search/:name/?' do
+				@players = Player.search(params[:name])
 
 				render_page :search
 			end
