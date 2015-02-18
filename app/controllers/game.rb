@@ -18,18 +18,16 @@ module Site
 					game = Game.first(id: params[:id])
 					player = game.player
 					player.update(guilty_count: player.guilty_count + 1)
-					player.update(hacker: player.guilty_count > player.innocent_count)
 					redirect to request.referrer
 				end
 			end
 
 			get '/game/:id/innocent' do
-				unless cookie["#{params[:id]}vote"] then
-					cookie["#{params[:id]}vote"] = true
+				unless cookies["#{params[:id]}vote"] then
+					cookies["#{params[:id]}vote"] = true
 					game = Game.first(id: params[:id])
 					player = game.player
 					player.update(innocent_count: player.innocent_count + 1)
-					player.update(hacker: player.guilty_count > player.innocent_count)
 					redirect to request.referrer
 				end
 			end

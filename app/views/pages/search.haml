@@ -7,7 +7,7 @@
 				%td Race
 		%tbody
 			-@players.each do |player|
-				%tr(class="#{player.hacker ? 'danger' : ''}")
+				%tr(class="#{player.is_guilty ? 'danger' : player.is_innocent? ? 'success' : 'warning' }")
 					%td
 						-if player.server == "EU"
 							%img(src="/img/eu.png")

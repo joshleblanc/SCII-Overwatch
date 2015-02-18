@@ -7,8 +7,17 @@ class Player
 	property :server, String
 	property :guilty_count, Integer, default: 0
 	property :innocent_count, Integer, default: 0
-	property :hacker, Boolean, default: false
 
 	has n, :games
+
+	def is_guilty?
+		p self.guilty_count, self.innocent_count
+		self.guilty_count > self.innocent_count
+	end
+
+	def is_innocent?
+		self.innocent_count > self.guilty_count
+	end
+
 
 end

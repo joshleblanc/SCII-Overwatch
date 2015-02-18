@@ -9,7 +9,7 @@
 				%td Uploaded
 		%tbody
 			-@games.each do |g|
-				%tr(class="#{g.player.hacker ? 'danger' : ''}")
+				%tr(class="#{g.player.is_guilty? ? 'danger' : g.player.is_innocent? ? 'success' : 'warning' }")
 					%td
 						-if g.player.server == "EU"
 							%img(src="/img/eu.png")
