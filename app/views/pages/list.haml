@@ -1,0 +1,37 @@
+.col-xs-12.nudge-down
+	%table.table.table-striped.table-hover.table-bordered
+		%thead
+			%tr
+				%td Server
+				%td Name
+				%td Race
+				%td Map
+				%td Uploaded
+		%tbody
+			-@games.each do |g|
+				%tr(class="#{g.player.hacker ? 'danger' : ''}")
+					%td
+						-if g.player.server == "EU"
+							%img(src="/img/eu.png")
+						-if g.player.server == "NA"
+							%img(src="/img/us.png")
+						-if g.player.server == "SEA"
+							%img(src="/img/au.png")
+						-if g.player.server == "CN"
+							%img(src="/img/cn.png")
+						-if g.player.server == "KR"
+							%img(src="/img/kr.png")
+						#{g.player.server}
+					%td #{g.player.name}
+					%td
+						-if g.player.race == "Zerg"
+							%img(src="/img/ico_race_z.png")
+						-if g.player.race == "Protoss"
+							%img(src="/img/ico_race_p.png")
+						-if g.player.race == "Terran"
+							%img(src="/img/ico_race_t.png")
+						-if g.player.race == "Random"
+							%img(src="/img/ico_race_r.png")
+						#{g.player.race}
+					%td #{g.map}
+					%td #{g.uploaded_at.to_date}

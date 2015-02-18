@@ -1,0 +1,31 @@
+.col-xs-12.nudge-down
+	.help-block
+		Download the replay and indicate whether the specified player is innocent or guilty.
+.col-xs-4
+	.form-group
+		%label Name
+		%input.form-control(value="#{@player.name}" readonly)
+	.form-group
+		%label Server
+		%input.form-control(value="#{@player.server}" readonly)
+	.form-group
+		%label Map
+		%input.form-control(value="#{@game.map}" readonly)
+	.form-group
+		%label Time
+		%input.form-control(value="#{@game.time}" readonly)
+	.form-group
+		%label Replay
+		%a.btn.btn-default.form-control(href="/game/download/#{@game.id}") Download
+	%label Vote
+	.row
+		.col-xs-6
+			-if cookies["#{@game.id}vote"]
+				%button.btn.btn-success.form-control(href="/game/#{@game.id}/innocent" readonly) Innocent
+			-else
+				%a.btn.btn-success.form-control(href="/game/#{@game.id}/innocent") Innocent
+		.col-xs-6
+			-if cookies["#{@game.id}vote"]
+				%button.btn.btn-danger.form-control(href="/game/#{@game.id}/guilty" readonly) Guilty
+			-else
+				%a.btn.btn-danger.form-control(href="/game/#{@game.id}/guilty") Guilty

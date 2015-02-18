@@ -1,0 +1,33 @@
+.col-xs-12.nudge_down
+	%table.table.table-hover.table-striped.table.bordered
+		%thead
+			%tr
+				%td Server
+				%td Name
+				%td Race
+		%tbody
+			-@players.each do |player|
+				%tr(class="#{player.hacker ? 'danger' : ''}")
+					%td
+						-if player.server == "EU"
+							%img(src="/img/eu.png")
+						-if player.server == "NA"
+							%img(src="/img/us.png")
+						-if player.server == "SEA"
+							%img(src="/img/au.png")
+						-if player.server == "CN"
+							%img(src="/img/cn.png")
+						-if player.server == "KR"
+							%img(src="/img/kr.png")
+						#{player.server}
+					%td #{player.name}
+					%td
+						-if player.race == "Zerg"
+							%img(src="/img/ico_race_z.png")
+						-if player.race == "Protoss"
+							%img(src="/img/ico_race_p.png")
+						-if player.race == "Terran"
+							%img(src="/img/ico_race_t.png")
+						-if player.race == "Random"
+							%img(src="/img/ico_race_r.png")
+						#{player.race}
