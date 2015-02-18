@@ -4,7 +4,7 @@ module Site
 	module Routes
 		class Games < Base
 			get '/game/:id' do
-				@game = Game.first(params[:id])
+				@game = Game.first(id: params[:id])
 				@player = @game.player
 				p @player.name
 				p @game
@@ -14,7 +14,7 @@ module Site
 			get '/game/:id/guilty' do
 				unless cookies["#{params[:id]}vote"] then
 					cookies["#{params[:id]}vote"] = true
-					game = Game.first(params[:id])
+					game = Game.first(id: params[:id])
 					player = game.player
 					player.update(guilty_count: player.guilty_count + 1)
 					player.update(hacker: player.guilty_count > player.innocent_count)
@@ -25,7 +25,7 @@ module Site
 			get '/game/:id/innocent' do
 				unless cookie["#{params[:id]}vote"] then
 					cookie["#{params[:id]}vote"] = true
-					game = Game.first(params[:id])
+					game = Game.first(id: params[:id])
 					player = game.player
 					player.update(innocent_count: player.innocent_count + 1)
 					player.update(hacker: player.guilty_count > player.innocent_count)
