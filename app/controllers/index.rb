@@ -4,8 +4,9 @@ module Site
   module Routes
     class Index < Base
       get '/' do
-         redirect to "/login"
+         redirect to("/list/recent")
       end
+
     end
   end
 end
