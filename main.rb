@@ -8,6 +8,7 @@ require 'savon'
 require 'encryptor'
 require 'pony'
 require 'tassadar'
+require 'fileutils'
 
 module Site
 	class App < Sinatra::Application
@@ -20,6 +21,10 @@ module Site
 		use Routes::Index
 		use Routes::Submit
 		use Routes::Games
+		use Routes::List
+		use Routes::Search
+
+	#	DataMapper.auto_migrate!
 		DataMapper.auto_upgrade!
 		DataMapper.finalize
 	end
