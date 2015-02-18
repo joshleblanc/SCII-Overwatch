@@ -16,8 +16,8 @@
 				%td Server
 				%td Name
 				%td Race
-				%td Map
-				%td Uploaded
+				%td Last Game
+				%td Last Game Uploaded
 		%tbody
 			-@games.each do |g|
 				%tr(class="#{g.player.is_guilty? ? 'danger' : g.player.is_innocent? ? 'success' : 'warning' }")
