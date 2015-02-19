@@ -17,6 +17,11 @@
 	.form-group
 		%label Replay
 		%a.btn.btn-default.form-control(href="/game/download/#{@game.id}") Download
+	.form-group
+		%label Evidence
+		%pre
+			:preserve
+				#{@game.evidence}
 	%label Vote
 	.row
 		.col-xs-6
