@@ -23,14 +23,19 @@
 			:preserve
 				#{@game.evidence}
 	%label Vote
+	.form-group
+		%select.form-control
+			%option(disabled selected) Who won this game?
+			-@game.players.each do |p|
+				%option #{p.name}
 	.row
 		.col-xs-6
 			-if cookies["#{@game.id}vote"]
-				%button.btn.btn-success.form-control(href="/game/#{@game.id}/innocent" readonly) Innocent
+				%button.btn.btn-success.form-control(href="/game/#{@game.id}/innocent" disabled) Innocent
 			-else
 				%a.btn.btn-success.form-control(href="/game/#{@game.id}/innocent") Innocent
 		.col-xs-6
 			-if cookies["#{@game.id}vote"]
-				%button.btn.btn-danger.form-control(href="/game/#{@game.id}/guilty" readonly) Guilty
+				%button.btn.btn-danger.form-control(href="/game/#{@game.id}/guilty" disabled) Guilty
 			-else
 				%a.btn.btn-danger.form-control(href="/game/#{@game.id}/guilty") Guilty

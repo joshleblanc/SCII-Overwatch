@@ -14,7 +14,7 @@ module Site
 				replay = Tassadar::SC2::Replay.new(file)
 				server = replay.details[:data][10].first[6...8]
 				player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase }.first
-				p player
+				p p
 				if player.nil? then
 					redirect to '/submit?error=player_not_found'
 				end
@@ -36,7 +36,8 @@ module Site
 				  time: replay.game.time,
 				  winner: replay.game.winner,
 				  evidence: params[:evidence],
-				  uploaded_at: Time.now
+				  uploaded_at: Time.now,
+				  players: replay.players
 				)
 				cookies["#{game.id}vote"] = true
 				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")

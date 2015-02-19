@@ -7,6 +7,7 @@ class Game
 	property :winner, String
 	property :evidence, Text
 	property :uploaded_at, DateTime
+	property :players, Object
 
 	belongs_to :player
 
