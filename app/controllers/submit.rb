@@ -36,12 +36,9 @@ module Site
 				  time: replay.game.time,
 				  winner: replay.game.winner,
 				  evidence: params[:evidence],
-<<<<<<< HEAD
 				  uploaded_at: Time.now,
-				  players: replay.players
-=======
-				  uploaded_at: Time.now
->>>>>>> feature/evidence
+				  players: replay.players,
+				  voters: []
 				)
 				cookies["#{game.id}vote"] = true
 				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")

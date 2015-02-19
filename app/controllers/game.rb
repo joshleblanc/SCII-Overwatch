@@ -8,29 +8,30 @@ module Site
 				p Game.all
 				@game = Game.first(id: params[:id])
 				@player = @game.player
-				p @player.name
-				p @game
+				@can_vote = !@game.voters.get(request.ip).nil?
+				p @game.voters
+				p request.ip
 				render_page :game
 			end
 
 			get '/game/:id/guilty' do
-				unless cookies["#{params[:id]}vote"] then
-					cookies["#{params[:id]}vote"] = true
-					game = Game.first(id: params[:id])
-					player = game.player
-					player.update(guilty_count: player.guilty_count + 1)
-					redirect to request.referrer
+				game = Game.first(id: params[:id])
+				voters = game.voters
+				p game.voters.get(request.ip).nil?
+				if game.voters.get(request.ip).nil?
+					Voter.create(ip: request.ip, game: game)
+					game.player.update(guilty_count: game.player.guilty_count + 1)
 				end
+				redirect to '/list/recent'
 			end
 
 			get '/game/:id/innocent' do
-				unless cookies["#{params[:id]}vote"] then
-					cookies["#{params[:id]}vote"] = true
-					game = Game.first(id: params[:id])
-					player = game.player
-					player.update(innocent_count: player.innocent_count + 1)
-					redirect to request.referrer
+				game = Game.first(id: params[:id])
+				if game.voters.get(request.ip).nil?
+					Voter.create(ip: request.ip, game: game)
+					game.player.update(innocent_count: game.player.innocent_count + 1)
 				end
+				redirect to '/list/recent'
 			end
 
 			get '/game/download/:id' do

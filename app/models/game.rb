@@ -10,6 +10,7 @@ class Game
 	property :players, Object
 
 	belongs_to :player
+	has n, :voters
 
 	def self.recent
 		all(limit: 100, order: [:id.desc])
