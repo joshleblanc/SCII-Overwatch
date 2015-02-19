@@ -12,7 +12,7 @@ module Site
 				file = params[:replay][:tempfile]
 				filename = params[:replay][:filename]
 				replay = Tassadar::SC2::Replay.new(file)
-				p params
+				server = replay.details[:data][10].first[6...8]
 				player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase }.first
 				p player
 				if player.nil? then
@@ -22,7 +22,7 @@ module Site
 						id: player.id,
 						race: player.actual_race,
 						name: player.name.gsub('<sp/>', '').gsub(' ', ''),
-				    server: params[:server]
+				    server: server
 				)
 
 				game = Game.first_or_create(
