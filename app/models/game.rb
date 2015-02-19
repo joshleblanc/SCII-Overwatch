@@ -4,6 +4,8 @@ class Game
 	property :id, Serial
 	property :map, String, key: true
 	property :time, String, key: true
+	property :winner, String
+	property :evidence, Text
 	property :uploaded_at, DateTime
 
 	belongs_to :player

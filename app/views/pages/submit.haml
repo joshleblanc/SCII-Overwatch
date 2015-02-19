@@ -3,11 +3,16 @@
 .col-xs-4.nudge-down
 	-if request.url.include? "player_not_found"
 		.alert.alert-danger Player not found in replay.
+	-if request.url.include? "no_evidence"
+		.alert.alert-danger No evidence provided.
 	%form(method="post" enctype="multipart/form-data")
 		.form-group
 			.help-block Name includes clan tag.
 			%label Name
 			%input.form-control(name="name")
+		.form-group
+			%label Evidence
+			%textarea.form-control(name="evidence")
 		.form-group
 			%input(type="file" name="replay")
 			%button.btn.btn-default.form-control(type="submit") Submit

@@ -18,6 +18,11 @@ module Site
 				if player.nil? then
 					redirect to '/submit?error=player_not_found'
 				end
+
+				if params[:evidence].length <= 0
+					redirect to '/submit?error=no_evidence'
+				end
+
 				player = Player.first_or_create(
 						id: player.id,
 						race: player.actual_race,
@@ -29,9 +34,10 @@ module Site
 					player: player,
 				  map: replay.game.map,
 				  time: replay.game.time,
+				  winner: replay.game.winner,
+				  evidence: params[:evidence],
+				  uploaded_at: Time.now
 				)
-				game.uploaded_at = Time.now
-				game.save
 				cookies["#{game.id}vote"] = true
 				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")
 				redirect to "/game/#{game.id}"
