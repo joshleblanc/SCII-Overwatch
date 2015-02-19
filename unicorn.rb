@@ -1,4 +1,4 @@
-@dir = "/home/josh/dev/sites/bookstore/"
+@dir = "/home/josh/dev/sites/SCII-Overwatch/"
 
 worker_processes 2
 working_directory @dir

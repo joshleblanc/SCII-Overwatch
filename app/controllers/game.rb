@@ -14,13 +14,14 @@ module Site
 			end
 
 			get '/game/:id/guilty' do
-				unless cookies["#{params[:id]}vote"] then
-					cookies["#{params[:id]}vote"] = true
-					game = Game.first(id: params[:id])
-					player = game.player
-					player.update(guilty_count: player.guilty_count + 1)
-					redirect to request.referrer
-				end
+				render_page :guilty_evidence
+				#unless cookies["#{params[:id]}vote"] then
+				#	cookies["#{params[:id]}vote"] = true
+				#	game = Game.first(id: params[:id])
+				#``	player = game.player
+				#	player.update(guilty_count: player.guilty_count + 1)
+				#	redirect to request.referrer
+				#end
 			end
 
 			get '/game/:id/innocent' do
