@@ -4,7 +4,8 @@ module Site
 		class List < Base
 			get '/list/recent' do
 				@games = Game.recent
-
+				#p Game.recent.players
+				@players = Game.recent.map { |i| i.player }.uniq
 				render_page :list
 			end
 

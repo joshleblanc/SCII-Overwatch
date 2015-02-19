@@ -22,7 +22,7 @@ module Site
 						id: player.id,
 						race: player.actual_race,
 						name: player.name.gsub('<sp/>', '').gsub(' ', ''),
-				    server: server
+				    server: server,
 				)
 
 				game = Game.first_or_create(

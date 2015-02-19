@@ -23,4 +23,8 @@ class Player
 		all(:name.like => "%#{player}%")
 	end
 
+	def last_game
+		self.games.first(order: [:uploaded_at.desc])
+	end
+
 end

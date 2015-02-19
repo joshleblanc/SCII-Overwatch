@@ -15,7 +15,7 @@ module Site
 
 			get '/search/:id/games/?' do
 				player = Player.get(params[:id])
-				@games = Game.all(player: player)
+				@games = Game.all(player: player, order: [:uploaded_at.desc])
 
 				render_page :game_list
 			end

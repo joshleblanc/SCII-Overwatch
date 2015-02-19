@@ -19,33 +19,34 @@
 				%td Last Game
 				%td Last Game Uploaded
 		%tbody
-			-@games.each do |g|
-				%tr(class="#{g.player.is_guilty? ? 'danger' : g.player.is_innocent? ? 'success' : 'warning' }")
+			-@players.each do |p|
+				-g = p.games(:order => [ :uploaded_at.desc]).first
+				%tr(class="#{p.is_guilty? ? 'danger' : p.is_innocent? ? 'success' : 'warning' }")
 					%td
-						-if g.player.server == "EU"
+						-if p.server == "EU"
 							%img(src="/img/eu.png")
-						-if g.player.server == "US"
+						-if p.server == "US"
 							%img(src="/img/us.png")
-						-if g.player.server == "SG"
+						-if p.server == "SG"
 							%img(src="/img/au.png")
-						-if g.player.server == "CN"
+						-if p.server == "CN"
 							%img(src="/img/cn.png")
-						-if g.player.server == "KR"
+						-if p.server == "KR"
 							%img(src="/img/kr.png")
-						#{g.player.server}
+						#{p.server}
 
 					%td
-						%a(href="/search/#{g.player.id}/games" title="View all games for this player") #{g.player.name}
+						%a(href="/search/#{p.id}/games" title="View all games for this player") #{p.name}
 					%td
-						-if g.player.race == "Zerg"
+						-if p.race == "Zerg"
 							%img(src="/img/ico_race_z.png")
-						-if g.player.race == "Protoss"
+						-if p.race == "Protoss"
 							%img(src="/img/ico_race_p.png")
-						-if g.player.race == "Terran"
+						-if p.race == "Terran"
 							%img(src="/img/ico_race_t.png")
-						-if g.player.race == "Random"
+						-if p.race == "Random"
 							%img(src="/img/ico_race_r.png")
-						#{g.player.race}
+						#{p.race}
 					%td
 						%a(href="/game/#{g.id}" title="View this game") #{g.map}
 					%td #{g.uploaded_at.to_date}

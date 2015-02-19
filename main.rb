@@ -9,6 +9,7 @@ require 'encryptor'
 require 'pony'
 require 'tassadar'
 require 'fileutils'
+require 'date'
 
 module Site
 	class App < Sinatra::Application
