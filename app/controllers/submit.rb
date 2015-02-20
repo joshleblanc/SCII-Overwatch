@@ -23,29 +23,33 @@ module Site
 					redirect to '/submit?error=no_evidence'
 				end
 
-				player = Player.first_or_create(
-						id: replay_player.id
-				)
-				player.race = replay_player.actual_race
-				player.name = replay_player.name.gsub('<sp/>', '').gsub(' ', '')
-				player.server = server
-				player.save
-
-				game = Game.first_or_create(
-					player: player,
-				  map: replay.game.map,
-				  time: replay.game.time,
-
-				)
-				game.evidence = params[:evidence]
-				game.winner = replay.game.winner.name.gsub('<sp/>', '')
-				game.uploaded_at = Time.now
-				game.players = replay.players
-				save_success = game.save
-				if !save_success && game.
-					game.destroy
-					redirect to '/submit?error=something_went_wrong'
+				player = Player.first(id: replay_parser.id)
+				if player.nil?
+					player = Player.create(
+							id: replay_player.id,
+					    race: replay_parser.actual_race,
+					    name: replay_parser.name.gsub('<sp/>', '').gsub(' ', ''),
+					    server: server
+					)
 				end
+
+				game = Game.first(
+						player: player,
+				    map: replay.game.map,
+				    time: replay.game.time
+				)
+				if game.nil?
+					game = Game.create(
+							player:player,
+					    map: replay.game.map,
+					    time: replay.game.time,
+					    evidence: params[:evidence],
+					    uploaded_at: Time.now,
+					    winner: replay.game.winner.name.gsub('<sp/>', ''),
+					    players: replay.players
+					)
+				end
+
 
 				Voter.create(ip: request.ip, game: game)
 				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")
