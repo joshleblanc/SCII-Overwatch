@@ -29,6 +29,7 @@ module Site
 				player.race = replay_player.actual_race
 				player.name = replay_player.name.gsub('<sp/>', '').gsub(' ', '')
 				player.server = server
+				player.save
 
 				game = Game.first_or_create(
 					player: player,
@@ -41,7 +42,7 @@ module Site
 				game.uploaded_at = Time.now
 				game.players = replay.players
 				save_success = game.save
-				unless !save_success
+				if !save_success && game.
 					game.destroy
 					redirect to '/submit?error=something_went_wrong'
 				end
