@@ -1,7 +1,8 @@
 class Voter
 	include DataMapper::Resource
 
-	property :ip, String, key: true
+	property :id, Serial
+	property :ip, String
 
 	belongs_to :game
 

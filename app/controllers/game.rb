@@ -8,7 +8,7 @@ module Site
 				p Game.all
 				@game = Game.first(id: params[:id])
 				@player = @game.player
-				@can_vote = @game.voters.get(request.ip).nil?
+				@can_vote = @game.voters.first(ip: request.ip).nil?
 				p @game.voters
 				p request.ip
 				render_page :game
@@ -21,7 +21,7 @@ module Site
 					redirect to "#{request.referrer}?error=incorrect_winner"
 				end
 
-				if game.voters.get(request.ip).nil?
+				if game.voters.first(ip: request.ip).nil?
 					Voter.create(ip: request.ip, game: game)
 					if params["verdict"] == "Guilty"
 						game.player.update(guilty_count: game.player.guilty_count + 1)
