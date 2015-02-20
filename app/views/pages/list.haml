@@ -25,29 +25,13 @@
 				-g = p.games(:order => [ :uploaded_at.desc]).first
 				%tr(class="#{p.is_guilty? ? 'danger' : p.is_innocent? ? 'success' : 'warning' }")
 					%td
-						-if p.server == "EU"
-							%img(src="/img/eu.png")
-						-if p.server == "US"
-							%img(src="/img/us.png")
-						-if p.server == "SG"
-							%img(src="/img/au.png")
-						-if p.server == "CN"
-							%img(src="/img/cn.png")
-						-if p.server == "KR"
-							%img(src="/img/kr.png")
+						%img(src="/img/#{get_server_abbr[p.server.to_sym]}.png")
 						#{p.server}
 
 					%td
 						%a(href="/search/#{p.id}/games" title="View all games for this player") #{p.name}
 					%td
-						-if p.race == "Zerg"
-							%img(src="/img/ico_race_z.png")
-						-if p.race == "Protoss"
-							%img(src="/img/ico_race_p.png")
-						-if p.race == "Terran"
-							%img(src="/img/ico_race_t.png")
-						-if p.race == "Random"
-							%img(src="/img/ico_race_r.png")
+						%img(src="#{get_race_image(p.race)}")
 						#{p.race}
 					%td
 						%a(href="/game/#{g.id}" title="View this game") #{g.map}

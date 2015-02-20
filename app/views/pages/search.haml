@@ -9,26 +9,10 @@
 			-@players.each do |player|
 				%tr(class="#{player.is_guilty? ? 'danger' : player.is_innocent? ? 'success' : 'warning' }")
 					%td
-						-if player.server == "EU"
-							%img(src="/img/eu.png")
-						-if player.server == "US"
-							%img(src="/img/us.png")
-						-if player.server == "SG"
-							%img(src="/img/au.png")
-						-if player.server == "CN"
-							%img(src="/img/cn.png")
-						-if player.server == "KR"
-							%img(src="/img/kr.png")
+						%img(src="/img/#{get_server_abbr[player.server.to_sym]}.png")
 						#{player.server}
 					%td
 						%a(href="/search/#{player.id}/games") #{player.name}
 					%td
-						-if player.race == "Zerg"
-							%img(src="/img/ico_race_z.png")
-						-if player.race == "Protoss"
-							%img(src="/img/ico_race_p.png")
-						-if player.race == "Terran"
-							%img(src="/img/ico_race_t.png")
-						-if player.race == "Random"
-							%img(src="/img/ico_race_r.png")
+						%img(src="#{get_race_image player.race}")
 						#{player.race}
