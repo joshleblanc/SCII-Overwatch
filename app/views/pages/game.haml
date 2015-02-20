@@ -22,7 +22,7 @@
 		%a.btn.btn-default.form-control(href="/game/download/#{@game.id}") Download
 	.form-group
 		%label Evidence
-		%pre
+		%pre(style="word-wrap:normal; white-space:pre-line;word-break:normal")
 			:preserve
 				#{@game.evidence}
 	%form(method="post")
