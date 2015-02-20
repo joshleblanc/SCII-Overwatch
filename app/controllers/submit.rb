@@ -24,11 +24,11 @@ module Site
 				end
 
 				player = Player.first_or_create(
-						id: player.id,
-						race: player.actual_race,
-						name: player.name.gsub('<sp/>', '').gsub(' ', ''),
-				    server: server,
+						id: player.id
 				)
+				player.race = player.actual_race
+				player.name = player.name.gsub('<sp/>', '').gsub(' ', '')
+				player.server = server
 
 				game = Game.first_or_create(
 					player: player,
