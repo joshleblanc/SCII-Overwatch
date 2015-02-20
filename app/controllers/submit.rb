@@ -13,7 +13,7 @@ module Site
 				filename = params[:replay][:filename]
 				replay = Tassadar::SC2::Replay.new(file)
 				server = replay.details[:data][10].first[6...8]
-				player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase }.first
+				replay_player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase }.first
 
 				if player.nil? then
 					redirect to '/submit?error=player_not_found'
@@ -24,10 +24,10 @@ module Site
 				end
 
 				player = Player.first_or_create(
-						id: player.id
+						id: replay_player.id
 				)
-				player.race = player.actual_race
-				player.name = player.name.gsub('<sp/>', '').gsub(' ', '')
+				player.race = replay_player.actual_race
+				player.name = replay_player.name.gsub('<sp/>', '').gsub(' ', '')
 				player.server = server
 
 				game = Game.first_or_create(
