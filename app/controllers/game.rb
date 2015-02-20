@@ -16,7 +16,6 @@ module Site
 
 			get '/game/:id/guilty' do
 				game = Game.first(id: params[:id])
-				voters = game.voters
 				p game.voters.get(request.ip).nil?
 				if game.voters.get(request.ip).nil?
 					Voter.create(ip: request.ip, game: game)

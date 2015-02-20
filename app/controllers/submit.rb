@@ -34,13 +34,15 @@ module Site
 					player: player,
 				  map: replay.game.map,
 				  time: replay.game.time,
-				  winner: replay.game.winner,
-				  evidence: params[:evidence],
-				  uploaded_at: Time.now,
-				  players: replay.players,
-				  voters: []
+
 				)
-				cookies["#{game.id}vote"] = true
+				game.evidence = params[:evidence],
+				game.winner = replay.game.winner,
+				game.uploaded_at = Time.now,
+				game.players = replay.players,
+				game.save
+
+				Voter.create(ip: request.ip)
 				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")
 				redirect to "/game/#{game.id}"
 			end
