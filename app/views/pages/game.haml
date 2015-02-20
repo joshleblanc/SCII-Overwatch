@@ -25,20 +25,18 @@
 		%pre
 			:preserve
 				#{@game.evidence}
-	%label Vote
-	.form-group
-		%select.form-control(name="winner_confirm")
-			%option(disabled="" selected) Who won this game?
-			-@game.players.each do |p|
-				%option #{p.name}
-	.row
-		.col-xs-6
+	%form(method="post")
+		%label Vote
+		.form-group
+			%select.form-control#winner(name="winner_confirm")
+				%option(disabled="" selected) Who won this game?
+				-@game.players.each do |p|
+					%option #{p.name}
+		.form-group
+			%select.form-control(name="verdict")
+				%option(disabled="" selected) Verdict?
+				%option Innocent
+				%option Guilty
 			-if @can_vote
-				%button.btn.btn-success.form-control(href="/game/#{@game.id}/innocent" disabled) Innocent
-			-else
-				%a.btn.btn-success.form-control(href="/game/#{@game.id}/innocent") Innocent
-		.col-xs-6
-			-if @can_vote
-				%button.btn.btn-danger.form-control(href="/game/#{@game.id}/guilty" disabled) Guilty
-			-else
-				%a.btn.btn-danger.form-control(href="/game/#{@game.id}/guilty") Guilty
+				%button.btn.btn-default.form-control(type="submit") Submit
+
