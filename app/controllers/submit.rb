@@ -40,7 +40,11 @@ module Site
 				game.winner = replay.game.winner.name.gsub('<sp/>', '')
 				game.uploaded_at = Time.now
 				game.players = replay.players
-				game.save
+				save_success = game.save
+				unless !save_success
+					game.destroy
+					redirect to '/submit?error=something_went_wrong'
+				end
 
 				Voter.create(ip: request.ip, game: game)
 				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")
