@@ -16,7 +16,10 @@ module Site
 
 			get '/game/:id/guilty' do
 				game = Game.first(id: params[:id])
-				p game.voters.get(request.ip).nil?
+				if params[:winner_confirm] != game.winner
+					Voter.create(ip: request.ip)
+					redirect to "#{request.referrer}?error=incorrect_winner"
+				end
 				if game.voters.get(request.ip).nil?
 					Voter.create(ip: request.ip, game: game)
 					game.player.update(guilty_count: game.player.guilty_count + 1)
@@ -26,6 +29,10 @@ module Site
 
 			get '/game/:id/innocent' do
 				game = Game.first(id: params[:id])
+				if params[:winner_confirm] != game.winner
+					Voter.create(ip: request.ip)
+					redirect to "#{request.referrer}?error=incorrect_winner"
+				end
 				if game.voters.get(request.ip).nil?
 					Voter.create(ip: request.ip, game: game)
 					game.player.update(innocent_count: game.player.innocent_count + 1)

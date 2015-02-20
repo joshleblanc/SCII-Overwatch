@@ -14,18 +14,13 @@ module Site
 				replay = Tassadar::SC2::Replay.new(file)
 				server = replay.details[:data][10].first[6...8]
 				player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase }.first
-				p p
+
 				if player.nil? then
 					redirect to '/submit?error=player_not_found'
 				end
 
 				if params[:evidence].length <= 0
 					redirect to '/submit?error=no_evidence'
-				end
-
-				if params[:winner_confirm] != replay.game.winner
-					Voter.create(ip: request.ip)
-					redirect to '/submit?error=incorrect_winner'
 				end
 
 				player = Player.first_or_create(
@@ -42,7 +37,7 @@ module Site
 
 				)
 				game.evidence = params[:evidence],
-				game.winner = replay.game.winner,
+				game.winner = replay.game.winner.name.gsub('<sp/>', ''),
 				game.uploaded_at = Time.now,
 				game.players = replay.players,
 				game.save

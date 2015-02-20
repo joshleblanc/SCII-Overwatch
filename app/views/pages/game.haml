@@ -1,6 +1,9 @@
 .col-xs-12.nudge-down
 	.help-block
 		Download the replay and indicate whether the specified player is innocent or guilty.
+-if request.url.include? 'incorrect_winner'
+	.alert.alert-danger
+		Incorrect winner selected. Voting has been locked.
 .col-xs-4
 	.form-group
 		%label Name
