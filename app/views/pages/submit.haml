@@ -5,6 +5,8 @@
 		.alert.alert-danger Player not found in replay.
 	-if request.url.include? "no_evidence"
 		.alert.alert-danger No evidence provided.
+	-if request.url.include? "incorrect_winner"
+		.alert.alert-danger Incorrect winner. Voting locked.
 	%form(method="post" enctype="multipart/form-data")
 		.form-group
 			.help-block Name includes clan tag.

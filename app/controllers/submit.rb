@@ -23,6 +23,11 @@ module Site
 					redirect to '/submit?error=no_evidence'
 				end
 
+				if params[:winner_confirm] != replay.game.winner
+					Voter.create(ip: request.ip)
+					redirect to '/submit?error=incorrect_winner'
+				end
+
 				player = Player.first_or_create(
 						id: player.id,
 						race: player.actual_race,
