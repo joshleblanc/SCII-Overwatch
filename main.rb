@@ -25,7 +25,7 @@ module Site
 		use Routes::List
 		use Routes::Search
 
-	#	DataMapper.auto_migrate!
+		#DataMapper.auto_migrate!
 		DataMapper.auto_upgrade!
 		DataMapper.finalize
 	end

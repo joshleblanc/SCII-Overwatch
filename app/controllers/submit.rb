@@ -36,10 +36,10 @@ module Site
 				  time: replay.game.time,
 
 				)
-				game.evidence = params[:evidence],
-				game.winner = replay.game.winner.name.gsub('<sp/>', ''),
-				game.uploaded_at = Time.now,
-				game.players = replay.players,
+				game.evidence = params[:evidence]
+				game.winner = replay.game.winner.name.gsub('<sp/>', '')
+				game.uploaded_at = Time.now
+				game.players = replay.players
 				game.save
 
 				Voter.create(ip: request.ip)
