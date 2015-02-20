@@ -17,7 +17,7 @@ module Site
 			post '/game/:id' do
 				game = Game.first(id: params[:id])
 				if params[:winner_confirm] != game.winner
-					Voter.create(ip: request.ip)
+					Voter.create(ip: request.ip, game: game)
 					redirect to "#{request.referrer}?error=incorrect_winner"
 				end
 
