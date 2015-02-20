@@ -42,7 +42,7 @@ module Site
 				game.players = replay.players
 				game.save
 
-				Voter.create(ip: request.ip)
+				Voter.create(ip: request.ip, game: game)
 				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")
 				redirect to "/game/#{game.id}"
 			end
