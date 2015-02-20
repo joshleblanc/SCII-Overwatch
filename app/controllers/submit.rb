@@ -15,7 +15,7 @@ module Site
 				server = replay.details[:data][10].first[6...8]
 				replay_player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase }.first
 
-				if player.nil? then
+				if replay_player.nil? then
 					redirect to '/submit?error=player_not_found'
 				end
 
