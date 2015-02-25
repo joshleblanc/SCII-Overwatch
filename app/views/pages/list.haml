@@ -16,6 +16,7 @@
 				%td Server
 				%td Name
 				%td Race
+				%td Reports
 				%td Last Game
 				%td Last Game Uploaded
 		%tbody
@@ -30,6 +31,7 @@
 					%td
 						%img(src="#{get_race_image(p.race)}")
 						#{p.race}
+					%td #{p.games.count}
 					%td
 						%a(href="/game/#{g.id}" title="View this game") #{g.map}
 					%td #{g.uploaded_at.to_date}
