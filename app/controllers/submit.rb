@@ -13,15 +13,19 @@ module Site
 				filename = params[:replay][:filename]
 				replay = Tassadar::SC2::Replay.new(file)
 				server = replay.details[:data][10].first[6...8]
-				replay_player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase }.first
-				if replay_player.nil? then
+				replay_player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase || pl.id.to_s == params[:name]}
+				if replay_player.length >= 2
+					redirect to '/submit?error=identical_names'
+				end
+
+				if replay_player.nil? || replay_player.length <= 0 then
 					redirect to '/submit?error=player_not_found'
 				end
 
 				if params[:evidence].length <= 0
 					redirect to '/submit?error=no_evidence'
 				end
-
+				replay_player = replay_player.first
 				player = Player.first(id: replay_player.id)
 				if player.nil?
 					player = Player.create(

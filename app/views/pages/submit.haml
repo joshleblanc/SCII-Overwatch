@@ -7,9 +7,14 @@
 		.alert.alert-danger No evidence provided.
 	-if request.url.include? "incorrect_winner"
 		.alert.alert-danger Incorrect winner. Voting locked.
+	=if request.url.include? "identical_names"
+		.alert.alert-danger Ambiguous names. Please use player ID.
 	%form(method="post" enctype="multipart/form-data")
 		.form-group
-			.help-block Name includes clan tag.
+			.help-block
+				Name includes clan tag.
+				If names are identical, use player ID.
+				Player ID is the XXXXXX of "1-S2-1-XXXXXX", which can be found with a replay analyzer.
 			%label Name
 			%input.form-control(name="name")
 		.form-group
