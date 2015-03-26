@@ -7,7 +7,7 @@
 .col-xs-4
 	.form-group
 		%label Name
-		%input.form-control(value="#{@player.name}" readonly)
+		%input.form-control(value="#{@player.name} (#{@player.id})" readonly)
 	.form-group
 		%label Server
 		%input.form-control(value="#{@player.server}" readonly)
@@ -31,7 +31,7 @@
 			%select.form-control#winner(name="winner_confirm")
 				%option(disabled="" selected) Who won this game?
 				-@game.players.each do |p|
-					%option #{p.name}
+					%option #{p.name} (#{p.id})
 		.form-group
 			%select.form-control(name="verdict")
 				%option(disabled="" selected) Verdict?

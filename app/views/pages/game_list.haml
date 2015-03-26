@@ -9,7 +9,7 @@
 		%tbody
 			-@games.each do |g|
 				%tr
-					%td #{g.player.name}
+					%td #{g.player.name} (#{g.player.id})
 					%td
 						%a(href="/game/#{g.id}") #{g.map}
 					%td #{g.time[0..10]}

@@ -27,7 +27,7 @@
 						%img(src="/img/#{get_server_abbr[p.server.to_sym]}.png")
 						#{p.server}
 					%td
-						%a(href="/search/#{p.id}/games" title="View all games for this player") #{p.name}
+						%a(href="/search/#{p.id}/games" title="View all games for this player") #{p.name} (#{p.id})
 					%td
 						%img(src="#{get_race_image(p.race)}")
 						#{p.race}
