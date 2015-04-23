@@ -1,0 +1,80 @@
+#START MMR-BNET-DATA-HOTS-C
+## This should always be first data segment. Otherwise data is read based on the original file definition
+22.0
+#START DATA_LOCKED
+## US, EU, KR, SEA, CN
+## Loosened format, can be extended
+1,1,1,1,1
+#START UNRANKED_DETECTION_LOCKED
+## US, EU, KR, SEA, CN
+## 0 detection enabled, 1 disabled, 2 disabled for losses
+## Loosened format, can be extended
+2,2,2,2,2
+#START SEASON_NUMBER
+## US, EU, KR, SEA, CN
+## Loosened format, can be extended
+22
+22
+22
+22
+22
+#START SEASON_END_MAX_BONUS
+## US, EU, KR, SEA, CN
+## Master,diamond. If same number, then max diapool is calculated based on the master value
+## Loosened format, can be extended
+5000,5000
+5000,5000
+5000,5000
+5000,5000
+5000,5000
+#START SEASON_START_BONUS_TIME
+## US, EU, KR, SEA, CN
+## Loosened format, can be extended
+Sun 11 Jan 2015 08:00:03 GMT
+Sun 11 Jan 2015 00:00:03 GMT
+Sat 10 Jan 2015 15:00:03 GMT
+Sat 10 Jan 2015 16:00:03 GMT
+Sat 10 Jan 2015 16:00:03 GMT
+#START PROMOTE_OFFSETS
+## US, EU, KR, SEA, CN
+## Bronze,silver,gold,platinum,diamond,master,grandmaster,top-gm
+## Strict format
+0,200,420,700,940,1410,1780,2660
+0,200,420,700,940,1410,2100,2910
+0,200,420,700,940,1410,2020,2910
+0,200,420,700,940,1410,1720,2060
+0,200,420,700,940,1410,1720,2060
+#START OFFSETS
+## US, EU, KR, SEA, CN
+## Bronze,silver,gold,platinum,diamond,master,grandmaster
+## Strict format
+0,200,220,280,240,580,160
+0,200,220,280,240,580,160
+0,200,220,280,240,580,160
+0,200,220,280,240,580,160
+0,200,220,280,240,580,160
+#START PROMOTE_OFFSETS_WOL
+## US, EU, KR, SEA, CN
+## Bronze,silver,gold,platinum,diamond,master,grandmaster,top-gm
+## Strict format, can be left empty
+0,150,350,650,940,1240,1415,2000
+0,150,350,650,940,1240,1415,2000
+0,150,350,650,940,1240,1415,2000
+0,150,350,650,940,1240,1415,2000
+0,150,350,650,940,1240,1415,2000
+#START OFFSETS_WOL
+## US, EU, KR, SEA, CN
+## bronze,silver,gold,platinum,diamond,master,grandmaster
+## Strict format, can be left empty
+0,150,200,330,260,530,320
+0,150,200,330,260,530,320
+0,150,200,330,260,530,320
+0,150,200,330,260,530,320
+0,150,200,330,260,530,320
+#START MEM_ADDRESSES
+## Base address, player offset, info offset
+## Optional data segment
+## Strict format, can be left empty when hardcoded addresses are used
+56782348
+3608
+436
