@@ -3,7 +3,7 @@ module Site
 	module Routes
 		class Mmr < Base
 			get '/mmr-tool/?' do
-				render_page :mmr
+				render_page :mmr, false
 			end
 
 			post '/mmr-tool/hots/?' do
