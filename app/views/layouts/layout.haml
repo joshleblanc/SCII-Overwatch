@@ -20,15 +20,15 @@
 	%body
 		#body-container
 			#wrap
-				.container-fluid.border-shadow
+				.container.border-shadow
 					#header
 						=render_partial :navbar
 					#body
-						.container
-							.row
-								=yield
+						.row
+							=yield
 			#footer-container.nudge-down
-				.container.text-center#footer
+				.container#footer
 					.row
-						.col-xs-12
+						.col-xs-6
+							Copy write Joshua LeBlanc 2015
 

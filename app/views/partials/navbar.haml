@@ -35,5 +35,4 @@
 			%form.navbar-form.navbar-right(role="search" method="post" action="/search")
 				.form-group
 				.input-group
-					%input.form-control(type="text" placeholder="Search Players" name="player_search")
-
+					%input.form-control(type="text" placeholder="#{params[:name] ? params[:name] : 'Search Players'}" name="player_search")
