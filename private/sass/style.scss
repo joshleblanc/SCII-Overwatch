@@ -4,7 +4,7 @@ $background-color: rgb(245, 245, 245);
 $footer-height: 150px;
 
 body {
-  padding-top: 40px;
+  padding-top: 100px;
   html {
     height: 100%;
   }
@@ -12,7 +12,7 @@ body {
 }
 /* Wrapper for page content to push down footer */
 #wrap {
-   box-shadow: 0px 0px 10px black;
+   #box-shadow: 0px 0px 10px black;
    min-height: 100%;
    height: auto;
 //   height: auto;
@@ -30,7 +30,7 @@ body {
    padding-top: 15px;
    form {
       padding: 15px 15px 15px 15px;
-      background-color: $background-color;
+      #background-color: $background-color;
    }
 }
 .white-text {
@@ -42,13 +42,13 @@ body {
 #footer {
    width: 100%;
    height: $footer-height;
-   background-color: $background-color;
+   #background-color: $background-color;
 }
 #body-container {
    height: 100%;
-   background-color: $background-color;
+  # background-color: $background-color;
    margin: auto;
-   box-shadow: 0 0 10px black;
+   #box-shadow: 0 0 10px black;
 
 }
 /* Set the fixed height of the footer here */
@@ -67,7 +67,7 @@ body {
 }
 .container {
    height: 100%;
-   background-color: $background-color;
+  # background-color: $background-color;
    max-width: none !important;
 
 }
@@ -78,5 +78,5 @@ body {
 }
 
 #nav-bar {
-   background-color: $background-color
+   #background-color: $background-color
 }
