@@ -1,14 +1,13 @@
-.col-xs-12.col-sm-8.col-md-5.nudge-down
-	%p.help-block
-		Simple app to catch hackers in Starcraft II
-	%p.help-block
-		Table is color coordinated. Red means more guilty votes than innocent, Green means more innocent votes than
-		guilty, and Yellow means they're even.
-	%p.help-block
-		Clicking the player name will bring you to a list of all submitted games for that player, while clicking the map
-		name will bring you to the specific replay.
-	%p.help-block
-		Message InfCereal on TeamLiquid.net if you have any problems/suggestions.
+.col-xs-12.nudge-down
+	.panel.panel-default
+		.panel-heading
+			.panel-title
+				༼ つ ◕_◕༽つ NEWS ༼ つ ◕_◕༽つ
+		.panel-body
+			%p
+				New styling & bug fixes
+			%p
+				If a battle.net link is broken it's because the player changed their name. Working on something for this.
 .col-xs-12.nudge-down
 	%table.table.table-hover
 		%thead
@@ -30,7 +29,7 @@
 					%td
 						%a(href="/search/#{p.id}/games" title="View all games for this player") #{p.name}
 					%td
-						%a(href="http://#{p.server}.battle.net/sc2/en/profile/#{p.id}/1/#{p.name}/")
+						%a(href="http://#{p.server}.battle.net/sc2/en/profile/#{p.id}/1/#{p.name.split(']').last}/")
 							#{p.id}
 							%span.glyphicon.glyphicon-share
 					%td
