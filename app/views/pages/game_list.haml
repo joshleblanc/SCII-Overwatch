@@ -11,7 +11,7 @@
 			-@games.each do |g|
 				%tr
 					%td
-						%a(href="http://#{g.player.server}.battle.net/sc2/en/profile/#{g.player.id}/1/#{g.player.name}/")
+						%a(href="http://#{g.player.server}.battle.net/sc2/en/profile/#{g.player.id}/1/#{g.player.name.split(']').last}/")
 							#{g.player.name}
 							%span.glyphicon.glyphicon-share
 					%td #{g.player.id}
