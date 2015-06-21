@@ -9,7 +9,7 @@
 		.form-group
 			%label
 				Name:
-				%a(href="http://#{@player.server}.battle.net/sc2/en/profile/#{@player.id}/1/#{@player.name}/")
+				%a(href="http://#{@player.server}.battle.net/sc2/en/profile/#{@player.id}/1/#{@player.name.split(']').last}/")
 					=@player.name
 					%span.glyphicon.glyphicon-share
 
