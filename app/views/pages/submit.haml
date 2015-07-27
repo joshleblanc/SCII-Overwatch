@@ -1,0 +1,25 @@
+.col-xs-12
+	%h2 Upload the suspect replay
+.col-xs-4.nudge-down
+	-if request.url.include? "player_not_found"
+		.alert.alert-danger Player not found in replay.
+	-if request.url.include? "no_evidence"
+		.alert.alert-danger No evidence provided.
+	-if request.url.include? "incorrect_winner"
+		.alert.alert-danger Incorrect winner. Voting locked.
+	=if request.url.include? "identical_names"
+		.alert.alert-danger Ambiguous names. Please use player ID.
+	%form(method="post" enctype="multipart/form-data")
+		.form-group
+			.help-block
+				Name includes clan tag.
+				If names are identical, use player ID.
+				Player ID is the XXXXXX of "1-S2-1-XXXXXX", which can be found with a replay analyzer.
+			%label Name
+			%input.form-control(name="name")
+		.form-group
+			%label Evidence
+			%textarea.form-control(name="evidence")
+		.form-group
+			%input(type="file" name="replay")
+			%button.btn.btn-default.form-control(type="submit") Submit

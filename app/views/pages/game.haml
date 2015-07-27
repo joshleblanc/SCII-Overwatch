@@ -1,0 +1,50 @@
+.col-xs-12.nudge-down
+	.help-block
+		Download the replay and indicate whether the specified player is innocent or guilty.
+	-if request.url.include? 'incorrect_winner'
+		.alert.alert-danger
+			Incorrect winner selected. Voting has been locked.
+.col-xs-12
+	%blockquote
+		.form-group
+			%label
+				Name:
+				%a(href="http://#{@player.server}.battle.net/sc2/en/profile/#{@player.id}/1/#{@player.name.split(']').last}/")
+					=@player.name
+					%span.glyphicon.glyphicon-share
+
+		.form-group
+			%label ID:
+			#{@player.id}
+		.form-group
+			%label Server:
+			#{@player.server}
+		.form-group
+			%label Map:
+			#{@game.map}
+		.form-group
+			%label Time:
+			#{@game.time}
+		.form-group
+			%label Replay
+			%a.btn.btn-default.form-control(href="/game/download/#{@game.id}") Download
+	.form-group
+		%label Evidence
+		%pre(style="word-wrap:normal; white-space:pre-line;word-break:normal")
+			:preserve
+				#{@game.evidence}
+	%form(method="post")
+		%label Vote
+		.form-group
+			%select.form-control#winner(name="winner_confirm")
+				%option(disabled="" selected) Who won this game?
+				-@game.players.each do |p|
+					%option #{p.name} (#{p.id})
+		.form-group
+			%select.form-control(name="verdict")
+				%option(disabled="" selected) Verdict?
+				%option Innocent
+				%option Guilty
+			-if @can_vote
+				%button.btn.btn-default.form-control(type="submit") Submit
+

@@ -1,0 +1,21 @@
+.col-xs-12.nudge-down
+	%table.table.table-striped.table-hover.table-bordered
+		%thead
+			%tr
+				%td Player
+				%td ID
+				%td Map
+				%td Played
+				%td Uploaded
+		%tbody
+			-@games.each do |g|
+				%tr
+					%td
+						%a(href="http://#{g.player.server}.battle.net/sc2/en/profile/#{g.player.id}/1/#{g.player.name.split(']').last}/")
+							#{g.player.name}
+							%span.glyphicon.glyphicon-share
+					%td #{g.player.id}
+					%td
+						%a(href="/game/#{g.id}") #{g.map}
+					%td #{g.time[0..10]}
+					%td #{g.uploaded_at.to_date}
