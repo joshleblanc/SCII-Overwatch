@@ -8,12 +8,12 @@
 					%td Race
 			%tbody
 				-@players.each do |player|
-					%tr(class="#{player.is_guilty? ? 'danger' : player.is_innocent? ? 'success' : 'warning' }")
+					%tr(class="#{player.css_class}")
 						%td
 							%img(src="/img/#{get_server_abbr[player.server.to_sym]}.png")
 							#{player.server}
 						%td
-							%a(href="/search/#{player.id}/games") #{player.name}
+							%a(href="/players/#{player.id}/games") #{player.name}
 						%td
 							%img(src="#{get_race_image player.race}")
 							#{player.race}

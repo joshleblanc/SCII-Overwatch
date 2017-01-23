@@ -1,0 +1,10 @@
+.modal.fade#upload-modal(tab-index="-1" role="dialog")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        %button.close(data-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true") &times;
+        %h4 Upload
+      .modal-body
+        %form.dropzone#replay-upload(action="/submit")
+      .modal-footer

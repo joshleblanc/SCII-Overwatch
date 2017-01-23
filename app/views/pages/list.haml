@@ -1,41 +1,45 @@
 .col-xs-12.nudge-down
-	.panel.panel-default
-		.panel-heading
-			.panel-title
-				༼ つ ◕_◕༽つ NEWS ༼ つ ◕_◕༽つ
-		.panel-body
-			%p
-				New styling & bug fixes
-			%p
-				If a battle.net link is broken it's because the player changed their name. Working on something for this.
+  -if request.url.include? 'invalid_version'
+    .alert.alert-danger
+      Invalid replay version uploaded - contact me using the links at the bottom of the page.
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        ༼ つ ◕_◕༽つ NEWS ༼ つ ◕_◕༽つ
+    .panel-body
+      %p
+        Patch 3.9 Support. New upload flow, new replay parser, new database structure, name change tracking. 
 .col-xs-12.nudge-down
-	%table.table.table-hover
-		%thead
-			%tr
-				%td Server
-				%td Name
-				%td ID
-				%td Race
-				%td Games
-				%td Last Game
-				%td Last Game Uploaded
-		%tbody
-			-@players.each do |p|
-				-g = p.games(:order => [ :uploaded_at.desc]).first
-				%tr(class="#{p.is_guilty? ? 'danger' : p.is_innocent? ? 'success' : 'warning' }")
-					%td
-						%img(src="/img/#{get_server_abbr[p.server.to_sym]}.png")
-						#{p.server}
-					%td
-						%a(href="/search/#{p.id}/games" title="View all games for this player") #{p.name}
-					%td
-						%a(href="http://#{p.server}.battle.net/sc2/en/profile/#{p.id}/1/#{p.name.split(']').last}/")
-							#{p.id}
-							%span.glyphicon.glyphicon-share
-					%td
-						%img(src="#{get_race_image(p.race)}")
-						#{p.race}
-					%td #{p.games.count}
-					%td
-						%a(href="/game/#{g.id}" title="View this game") #{g.map}
-					%td #{g.uploaded_at.to_date}
+  %table.table.table-hover
+    %thead
+      %tr
+        %td Server
+        %td Name
+        %td ID
+        %td Race
+        %td Games
+        %td Last Game
+        %td Last Game Uploaded
+        %td Innocent Votes
+        %td Guilty Votes
+    %tbody
+      -@players.each do |p|
+        %tr{ class: p.css_class }
+          %td
+            %img(src="/img/#{get_server_abbr[p.server.to_sym]}.png")
+            =p.server
+          %td
+            %a(href="/players/#{p.id}/games" title="View all games for this player") #{p.name}
+          %td
+            %a{ href: p.bnet_url }
+              =p.id
+              %span.glyphicon.glyphicon-share
+          %td
+            %img(src="#{get_race_image(p.race)}")
+            =p.race
+          %td=p.games.count
+          %td
+            %a(href="/players/#{p.id}/game/#{p.last_game.id}" title="View this game") #{p.last_game.map}
+          %td=p.last_game.uploaded_at.to_date
+          %td=p.innocent_count
+          %td=p.guilty_count

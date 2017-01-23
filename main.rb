@@ -4,12 +4,11 @@ require 'sinatra/static_assets'
 require 'sinatra/cookies'
 require 'data_mapper'
 require 'haml'
-require 'savon'
 require 'encryptor'
-require 'pony'
-require 'tassadar'
 require 'fileutils'
 require 'date'
+require 'sc2repparser'
+require 'pry'
 
 module Site
 	class App < Sinatra::Application
@@ -25,6 +24,7 @@ module Site
 		use Routes::List
 		use Routes::Search
 		use Routes::Mmr
+    use Routes::PlayerRoute
 
 		#DataMapper.auto_migrate!
 		DataMapper.auto_upgrade!
