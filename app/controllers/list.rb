@@ -2,10 +2,8 @@ require_relative "base.rb"
 module Site
 	module Routes
 		class List < Base
-			get '/list/recent' do
-				@games = Game.recent
-				#p Game.recent.players
-				@players = Game.recent.map { |i| i.player }.uniq
+			get '/list/recent/?' do
+        @players = Player.recently_accused
 				render_page :list
 			end
 

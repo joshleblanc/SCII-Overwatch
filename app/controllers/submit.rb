@@ -1,64 +1,67 @@
 require_relative "base.rb"
 
 module Site
-	module Routes
-		class Submit < Base
+  module Routes
+    class Submit < Base
 
-			get '/submit/?' do
-				render_page :submit
-			end
+      get '/submit/?' do
+        render_page :submit
+      end
 
-			post '/submit/?' do
-				file = params[:replay][:tempfile]
-				filename = params[:replay][:filename]
-				replay = Tassadar::SC2::Replay.new(file)
-				server = replay.details[:data][10].first[6...8]
-				replay_player = replay.players.select { |pl| pl.name.gsub('<sp/>', '').gsub(' ', '').downcase == params[:name].gsub(' ', '').downcase || pl.id.to_s == params[:name]}
-				if replay_player.length >= 2
-					redirect to '/submit?error=identical_names'
-				end
+      get '/submit/:game_id' do
+        @game = Game.get(params[:game_id])
+        redirect "list/recent?err=no_game" if @game.nil?
+        render_page :submit
+      end
 
-				if replay_player.nil? || replay_player.length <= 0 then
-					redirect to '/submit?error=player_not_found'
-				end
+      post '/submit/:game_id' do
+        game_player = GamePlayer.get(params[:name], params[:game_id])
+        if game_player.is_accused?
+          redirect "#{game_player.view_url}?err=already_submitted"
+        else
+          game_player.accuse! params[:evidence]
+        end
+        Voter.create(ip: request.ip, game: game_player.game)
+        redirect game_player.view_url
+      end
 
-				if params[:evidence].length <= 0
-					redirect to '/submit?error=no_evidence'
-				end
-				replay_player = replay_player.first
-				player = Player.first(id: replay_player.id)
-				if player.nil?
-					player = Player.create(
-							id: replay_player.id,
-					    race: replay_player.actual_race,
-					    name: replay_player.name.gsub('<sp/>', '').gsub(' ', ''),
-					    server: server
-					)
-				end
-
-				game = Game.first(
-						player: player,
-				    map: replay.game.map,
-				    time: replay.game.time
-				)
-				if game.nil?
-					game = Game.create(
-							player:player,
-					    map: replay.game.map,
-					    time: replay.game.time,
-					    evidence: params[:evidence],
-					    uploaded_at: Time.now,
-					    winner: replay.game.winner.name.gsub('<sp/>', ''),
-					    players: replay.players
-					)
-				end
-
-
-				Voter.create(ip: request.ip, game: game)
-				FileUtils.cp(file.path, "./files/#{game.id}.SC2Replay")
-				redirect to "/game/#{game.id}"
-			end
-
-		end
-	end
+      post '/submit/?' do
+        begin
+          file = params[:file][:tempfile]
+          replay = Sc2RepParser::Sc2Replay.new(file, current_version) 
+          game_players = replay.players.map do |player|
+            game_player = GamePlayer.first_or_create({
+              player: Player.first({ id: player.id[:real_id] }),
+              game: Game.first({ map: replay.map, date: replay.date })
+            }, {
+              player: Player.first_or_create({ id: player.id[:real_id] }, {
+                id: player.id[:real_id],
+                race: player.race,
+                server: replay.server,
+                names: [Name.new(value: player.name)]
+              }),
+              game: Game.first_or_create({
+                map: replay.map,
+                date: replay.date
+              }, {
+                map: replay.map,
+                date: replay.date,
+                uploaded_at: Time.now
+              }),
+              winner: player.outcome == "1"
+            })
+            unless game_player.player.names.map(&:value).include? player.name
+              game_player.player.names << Name.new(value: player.name)
+              game_player.player.save
+            end
+            game_player
+          end
+          FileUtils.cp(file.path, "./files/#{game_players.first.game.id}.SC2Replay")
+        rescue
+          return "/list/recent?err=invalid_version"
+        end
+        "/submit/#{game_players.first.game.id}"
+      end
+    end
+  end
 end
