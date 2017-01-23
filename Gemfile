@@ -9,5 +9,5 @@ gem 'tassadar'
 gem 'datamapper'
 gem 'dm-sqlite-adapter'
 gem 'mpq'
-gem 'sc2-rep-parser', path: "~/Documents/Development/sc2-rep-parser/"
+gem 'sc2-rep-parser'
 gem 'pry'
