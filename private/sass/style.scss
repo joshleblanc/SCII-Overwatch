@@ -42,6 +42,11 @@ body {
 .nudge-down {
    padding-top: 15px;
 }
+
+.dz-success-mark, .dz-error-mark {
+  display: none;
+}
+
 #footer {
    #width: 100%;
    height: $footer-height;
