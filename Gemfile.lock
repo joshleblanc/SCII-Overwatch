@@ -1,5 +1,12 @@
-PATH
-  remote: ~/Documents/Development/sc2-rep-parser/
+GIT
+  remote: https://github.com/chewi/bzip2-ruby
+  revision: 92d492c2b40c32a5c039314666655ebc2f52a817
+  specs:
+    bzip2-ruby (0.2.7)
+
+GIT
+  remote: https://github.com/horizonshadow/sc2-rep-parser.git
+  revision: 6ab239cc89564b7222de880d06b2819c67ce7111
   specs:
     sc2-rep-parser (0.0.1)
 
@@ -13,7 +20,6 @@ GEM
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
     bindata (1.3.1)
-    bzip2-ruby (0.2.7)
     coderay (1.1.1)
     data_objects (0.10.17)
       addressable (~> 2.1)
@@ -113,6 +119,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bzip2-ruby!
   datamapper
   dm-sqlite-adapter
   encryptor
