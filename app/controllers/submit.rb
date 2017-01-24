@@ -28,7 +28,7 @@ module Site
       post '/submit/?' do
         begin
           file = params[:file][:tempfile]
-          replay = Sc2RepParser::Sc2Replay.new(file, current_version) 
+          replay = Sc2RepParser::Sc2Replay.new(file) 
           game_players = replay.players.map do |player|
             game_player = GamePlayer.first_or_create({
               player: Player.first({ id: player.id[:real_id] }),
