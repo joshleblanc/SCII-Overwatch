@@ -11,7 +11,8 @@ class Player
   has n, :names
 
   def self.recently_accused
-    all.sort do |x, y|
+    players = GamePlayer.all.select { |gp| gp.is_accused? }.map(&:player)
+    players.sort do |x, y|
       y.last_game <=> x.last_game
     end
   end
