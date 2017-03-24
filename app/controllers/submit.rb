@@ -15,7 +15,7 @@ module Site
       end
 
       post '/submit/:game_id' do
-        game_player = GamePlayer.get(params[:name], params[:game_id])
+        game_player = GamePlayer.get(params[:game_id], params[:name])
         if game_player.is_accused?
           redirect "#{game_player.view_url}?err=already_submitted"
         else
@@ -28,7 +28,7 @@ module Site
       post '/submit/?' do
         begin
           file = params[:file][:tempfile]
-          replay = Sc2RepParser::Sc2Replay.new(file) 
+          replay = Sc2RepParser::Sc2Replay.new(file, current_version) 
           game_players = replay.players.map do |player|
             game_player = GamePlayer.first_or_create({
               player: Player.first({ id: player.id[:real_id] }),
@@ -48,7 +48,7 @@ module Site
                 date: replay.date,
                 uploaded_at: Time.now
               }),
-              winner: player.outcome == "1"
+              winner: player.outcome == 1
             })
             unless game_player.player.names.map(&:value).include? player.name
               game_player.player.names << Name.new(value: player.name)
