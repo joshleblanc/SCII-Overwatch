@@ -14,7 +14,7 @@ class Game
 	end
 
   def winners
-    self.gameplayers.select(&:is_accused?).map(&:player)
+    self.gameplayers.select(&:winner?).map(&:player)
   end
 
 end

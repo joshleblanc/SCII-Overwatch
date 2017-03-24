@@ -12,6 +12,7 @@
   %form(method="post" enctype="multipart/form-data")
     .form-group
       %label Name
+      %label 
       %select.form-control(name="name")
         -@game.players.each do |player|
           %option{ value: player.id }=player.names.last.value
