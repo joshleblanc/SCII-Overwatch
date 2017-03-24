@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/horizonshadow/sc2-rep-parser.git
-  revision: 6ab239cc89564b7222de880d06b2819c67ce7111
+  revision: a4a1e533e124e684ea4df3b281afebca8ca70d46
   specs:
     sc2-rep-parser (0.0.1)
 
