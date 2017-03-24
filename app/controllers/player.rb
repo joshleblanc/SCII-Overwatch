@@ -24,7 +24,7 @@ module Site
         end
         if game.voters.first(ip: request.ip).nil?
           Voter.create(ip: request.ip, game: game)
-          player = GamePlayer.get(params[:id], params[:game_id]).player
+          player = GamePlayer.first(player_id: params[:id], game_id: params[:game_id]).player
           if params[:verdict] == "Guilty"
             player.update(guilty_count: player.guilty_count + 1)
           end
