@@ -9,7 +9,7 @@ module Site
       end
 
       get '/players/:id/game/:game_id/?' do
-        @game_player = GamePlayer.get(params[:game_id], params[:id])
+        @game_player = GamePlayer.first(game_id: params[:game_id], player_id: params[:id])
         @player = @game_player.player
         @game = @game_player.game
         @can_vote = @game.voters.first(ip: request.ip).nil?

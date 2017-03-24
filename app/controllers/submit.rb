@@ -15,7 +15,7 @@ module Site
       end
 
       post '/submit/:game_id' do
-        game_player = GamePlayer.get(params[:game_id], params[:name])
+        game_player = GamePlayer.first(game_id: params[:game_id], player_id: params[:name])
         if game_player.is_accused?
           redirect "#{game_player.view_url}?err=already_submitted"
         else
