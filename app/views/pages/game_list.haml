@@ -12,7 +12,7 @@
         %td Played
         %td Uploaded
     %tbody
-      -@player.games.each do |g|
+      -@player.accused_games.each do |g|
         %tr
           %td
             %a(href="/players/#{@player.id}/game/#{g.id}") #{g.map}

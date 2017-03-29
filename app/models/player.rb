@@ -17,6 +17,14 @@ class Player
     end
   end
 
+  def num_accused
+    accused_games.count
+  end
+
+  def accused_games
+    gameplayers.all(is_accused: true).game
+  end
+
   def last_game
     games.last
   end
@@ -52,7 +60,7 @@ class Player
 	end
 
 	def last_game
-		self.games.first(order: [:uploaded_at.desc])
+		self.accused_games.first(order: [:uploaded_at.desc])
 	end
 
 end

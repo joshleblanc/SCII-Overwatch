@@ -28,18 +28,20 @@ module Site
       post '/submit/?' do
         begin
           file = params[:file][:tempfile]
-          replay = Sc2RepParser::Sc2Replay.new(file, current_version) 
+          replay = Sc2RepParser::Sc2Replay.new(file)
+          p replay
           game_players = replay.players.map do |player|
+            p player
             game_player = GamePlayer.first_or_create({
               player: Player.first({ id: player.id[:real_id] }),
               game: Game.first({ map: replay.map, date: replay.date })
             }, {
-              player: Player.first_or_create({ id: player.id[:real_id] }, {
+              player: Player.first_or_create({ id: player.id[:real_id] },
                 id: player.id[:real_id],
                 race: player.race,
                 server: replay.server,
                 names: [Name.new(value: player.name)]
-              }),
+              ),
               game: Game.first_or_create({
                 map: replay.map,
                 date: replay.date
@@ -56,8 +58,10 @@ module Site
             end
             game_player
           end
+          p "Copy file"
           FileUtils.cp(file.path, "./files/#{game_players.first.game.id}.SC2Replay")
         rescue
+          p $!.message
           return "/list/recent?err=invalid_version"
         end
         "/submit/#{game_players.first.game.id}"

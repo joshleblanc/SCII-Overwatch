@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: https://github.com/horizonshadow/sc2-rep-parser.git
-  revision: a4a1e533e124e684ea4df3b281afebca8ca70d46
+  revision: 8d1098fa44b798bb71a1896a27033932a7e9d598
   specs:
-    sc2-rep-parser (0.0.1)
+    sc2-rep-parser (0.0.2)
 
 GEM
   remote: http://rubygems.org/
@@ -17,7 +17,10 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     backports (3.6.8)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    bcrypt-ruby (3.1.5-x86-mingw32)
       bcrypt (>= 3.1.3)
     bindata (1.3.1)
     coderay (1.1.1)
@@ -69,6 +72,8 @@ GEM
       dm-core (~> 1.2.0)
     do_sqlite3 (0.10.17)
       data_objects (= 0.10.17)
+    do_sqlite3 (0.10.17-x86-mingw32)
+      data_objects (= 0.10.17)
     encryptor (3.0.0)
     fastercsv (1.5.5)
     haml (4.0.7)
@@ -86,7 +91,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
-    puma (3.4.0)
+    puma (3.8.2)
     rack (1.6.5)
     rack-protection (1.5.3)
       rack
@@ -118,6 +123,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   bzip2-ruby!

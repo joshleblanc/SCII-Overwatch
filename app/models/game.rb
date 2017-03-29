@@ -2,8 +2,8 @@ class Game
 	include DataMapper::Resource
 
 	property :id, Serial
-	property :map, String, unique_index: true
-	property :date, Integer, unique_index: true
+	property :map, String, unique_index: :u
+	property :date, Integer, unique_index: :u
 	property :uploaded_at, DateTime
 
   has n, :players, through: :gameplayers

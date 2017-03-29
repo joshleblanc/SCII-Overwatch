@@ -37,7 +37,7 @@
           %td
             %img(src="#{get_race_image(p.race)}")
             =p.race
-          %td=p.games.count
+          %td=p.num_accused
           %td
             %a(href="/players/#{p.id}/game/#{p.last_game.id}" title="View this game") #{p.last_game.map}
           %td=p.last_game.uploaded_at.to_date
