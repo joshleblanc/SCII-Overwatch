@@ -24,7 +24,8 @@ module Site
 		use Routes::List
 		use Routes::Search
 		use Routes::Mmr
-    use Routes::PlayerRoute
+		use Routes::PlayerRoute
+		use Routes::Webservice
 
 		#DataMapper.auto_migrate!
 		DataMapper.auto_upgrade!
