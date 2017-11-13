@@ -5,17 +5,13 @@
 				%tr
 					%td Server
 					%td Name
-					%td Race
 			%tbody
 				-@players.each do |player|
-					%tr(class="#{player.css_class}")
+					%tr
 						%td
 							%img(src="/img/#{get_server_abbr[player.server.to_sym]}.png")
-							#{player.server}
+							#{player.server.upcase}
 						%td
 							%a(href="/players/#{player.id}/games") #{player.name}
-						%td
-							%img(src="#{get_race_image player.race}")
-							#{player.race}
 	-else
 		%p Whoops, we couldn't find anyone matching that player.

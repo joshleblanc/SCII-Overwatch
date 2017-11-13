@@ -2,10 +2,9 @@ class Player
 	include DataMapper::Resource
 
 	property :id, Integer, key: true
-	property :race, String
-	property :server, String
-	property :guilty_count, Integer, default: 0
-	property :innocent_count, Integer, default: 0
+  property :bnet_url, String, length: 200
+  property :server, String, length: 3
+  property :bnet_id, Integer
 
 	has n, :games, through: :gameplayers
   has n, :names
@@ -17,6 +16,14 @@ class Player
     end
   end
 
+  def total_innocent_votes
+    gameplayers.inject(0) { |s, a| s + a.innocent_count }
+  end
+
+  def total_guilty_votes
+    gameplayers.inject(0) { |s, a| s + a.guilty_count}
+  end
+
   def num_accused
     accused_games.count
   end
@@ -25,35 +32,10 @@ class Player
     gameplayers.all(is_accused: true).game
   end
 
-  def last_game
-    games.last
-  end
-  
-  def bnet_url
-    "http://#{self.server}.battle.net/sc2/en/profile/#{self.id}/1/#{self.name.split('<sp/>').last}/"
-  end
-
   def name
     names.last.value
   end
 
-  def css_class
-    if is_guilty? 
-      'danger'
-    elsif is_innocent?
-      'success'
-    else
-      'warning'
-    end
-  end
-
-	def is_guilty?
-		self.guilty_count > self.innocent_count
-	end
-
-	def is_innocent?
-		self.innocent_count > self.guilty_count
-	end
 
 	def self.search(player)
 		all.names(:value.like => "%#{player}%").player

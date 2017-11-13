@@ -3,18 +3,23 @@
     %a{ href: @player.bnet_url }
       =@player.name
       %span.glyphicon.glyphicon-share
-  %p Also known as: #{@player.names.map(&:value).join(', ')}
+  %p Also known as: #{@player.names.reject { |n| n == @player.names.last }.map(&:value).join(', ')}
+  %p Total innocent votes: #{@player.total_innocent_votes}
+  %p Total guilty votes: #{@player.total_guilty_votes}
+
 .col-xs-12.nudge-down
   %table.table.table-striped.table-hover.table-bordered
     %thead
       %tr
         %td Map
         %td Played
-        %td Uploaded
+        %td Innocent Votes
+        %td Guilty Votes
     %tbody
-      -@player.accused_games.each do |g|
+      -GamePlayer.all(player: @player).each do |gp|
         %tr
           %td
-            %a(href="/players/#{@player.id}/game/#{g.id}") #{g.map}
-          %td #{Time.at(g.date).to_date}
-          %td #{g.uploaded_at.to_date}
+            %a(href="/players/#{@player.id}/game/#{gp.game.id}") #{gp.game.map}
+          %td=gp.game.date.strftime('%Y-%m-%d ')
+          %td=gp.innocent_count
+          %td=gp.guilty_count

@@ -6,5 +6,8 @@
           %span(aria-hidden="true") &times;
         %h4 Upload
       .modal-body
-        %form.dropzone#replay-upload(action="/submit")
+        %form#replayForm
+          %h6 Select a replay
+          %input#replayInput(type='file' name='file')
+          %p#uploadStatus
       .modal-footer

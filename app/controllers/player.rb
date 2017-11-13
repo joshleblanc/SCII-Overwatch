@@ -24,12 +24,12 @@ module Site
         end
         if game.voters.first(ip: request.ip).nil?
           Voter.create(ip: request.ip, game: game)
-          player = GamePlayer.first(player_id: params[:id], game_id: params[:game_id]).player
-          if params[:verdict] == "Guilty"
-            player.update(guilty_count: player.guilty_count + 1)
+          gp = GamePlayer.first(player_id: params[:id], game_id: params[:game_id])
+          if params[:verdict] == 'Guilty'
+            gp.update(guilty_count: gp.guilty_count + 1)
           end
-          if params[:verdict] == "Innocent"
-            player.update(innocent_count: player.innocent_count + 1)
+          if params[:verdict] == 'Innocent'
+            gp.update(innocent_count: gp.innocent_count + 1)
           end
         end
         redirect to '/list/recent'

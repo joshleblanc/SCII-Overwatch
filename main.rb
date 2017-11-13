@@ -7,8 +7,9 @@ require 'haml'
 require 'encryptor'
 require 'fileutils'
 require 'date'
-require 'sc2repparser'
 require 'pry'
+require 'sc2replaystats'
+require 'sinatra-websocket'
 
 module Site
 	class App < Sinatra::Application

@@ -20,16 +20,20 @@
       #{@player.id}
     .form-group
       %label Server:
-      #{@player.server}
+      #{@player.server.upcase}
     .form-group
       %label Map:
       #{@game.map}
     .form-group
       %label Date:
-      #{Time.at(@game.date).to_date}
+      #{@game.date.strftime("%Y-%m-%d %l:%M.%S")}
     .form-group
       %label Replay
-      %a.btn.btn-default.form-control(href="/game/download/#{@game.id}") Download
+      .row
+        .col-xs-6
+          %a.btn.btn-default.form-control(href="https://sc2replaystats.com/download/#{params[:game_id]}") Direct Download
+        .col-xs-6
+          %a.btn.btn-default.form-control(href="https://sc2replaystats.com/replay/#{params[:game_id]}") Sc2ReplayStats
   .form-group
     %label Evidence
     %pre(style="word-wrap:normal; white-space:pre-line;word-break:normal")

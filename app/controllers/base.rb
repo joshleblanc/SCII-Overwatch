@@ -6,6 +6,7 @@ module Site
         set :root, App.root
         set :session_secret, "thisstringwillnotchange"
         set :protection, except: :session_hijacking
+        set :sockets, {}
         # enable :run
         # #enable :static
         enable :sessions
